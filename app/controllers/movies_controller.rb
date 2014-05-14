@@ -1,14 +1,14 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-  respond_to :json
+  respond_to :json, :html
 
   def index
-    @movies = Movie.all
-    respond_to do |format|
-      format.html
-      format.xml { render xml: @movies }
-      format.json { render json: @movies }
+    if params[:query]
+      @movies = Movie.search(params[:query])
+    else
+      @movies = Movie.all
     end
+    respond_with(@movies)
   end
 
   def show
