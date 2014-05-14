@@ -35,23 +35,16 @@ class MoviesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
+    if @movie.update(movie_params)
+      redirect_to @movie
+    else
+      render :edit
     end
   end
 
   def destroy
     @movie.destroy
-    respond_to do |format|
-      format.html { redirect_to movies_url }
-      format.json { head :no_content }
-    end
+    redirect_to movies_url
   end
 
   private
