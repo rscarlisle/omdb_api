@@ -3,11 +3,7 @@ class MoviesController < ApplicationController
   respond_to :json, :html
 
   def index
-    if params[:query]
-      @movies = Movie.search(params[:query])
-    else
-      @movies = Movie.all
-    end
+    @movies = Movie.search(params[:query]) || Movie.all
     respond_with(@movies)
   end
 
@@ -23,7 +19,6 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
