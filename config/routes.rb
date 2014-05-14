@@ -3,4 +3,6 @@ OmdbApi::Application.routes.draw do
 
   resources :movies
 
+  post 'movies/:id' => 'movies#update'
+
 end
