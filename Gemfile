@@ -36,6 +36,12 @@ group :development, :test do
   gem 'pry-rails'
 end
 
+gem 'sinatra'
+
+gem 'sinatra-contrib'
+
+gem 'rspec'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
